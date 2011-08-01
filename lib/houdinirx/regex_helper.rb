@@ -1,4 +1,4 @@
-module Houdinirx
+module Houdini
   class RegexHelper
     attr_accessor :expressions, :match_string, :captures, :regexp
   
@@ -27,6 +27,7 @@ module Houdinirx
       @regexp = match_string.gsub(/\s/, "\\s*")
       replace_expressions!(@regexp)
       r = Regexp.new(@regexp, options)
+      puts r.inspect
       Houdini::MatchResult.new(text.match(r), @captures)
     end
     

@@ -4,7 +4,7 @@ require "houdinirx/version"
 
 Gem::Specification.new do |s|
   s.name        = "houdinirx"
-  s.version     = Houdinirx::VERSION
+  s.version     = Houdini::VERSION
   s.authors     = ["Eric Campbell", "Duncan Mak"]
   s.email       = ["ericcampbell59@gmail.com", "duncanmak@gmail.com"]
   s.homepage    = ""

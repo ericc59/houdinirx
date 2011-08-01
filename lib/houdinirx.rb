@@ -6,7 +6,7 @@ require "houdinirx/string"
 require "houdinirx/regex_helper"
 require "houdinirx/match_result"
 
-module Houdinirx
+module Houdini
   
   class << self
     def [](name)
