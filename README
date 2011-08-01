@@ -1,1 +1,39 @@
 A ruby DSL for building long complex regular expressions used frequently across large data extraction projects.
+
+This is the simplest example possible, but given the following text:
+t = "$10.99 (555) 444-3322 Boston, MA"
+
+Instead of writing a regular expression like the following:
+data = t.match(/\$(\d+[,\d]*\.\d+)\s*(\(\d{3}\)\s\d{3}-\d{4})\s*(\w+),\s(\w+)/)
+
+and then retrieving the data with match result indices:
+data[1] => "10.99"
+data[2] => "(555) 444-3322"
+data[3] => "Boston"
+data[4] => "MA"
+
+We can use Houdini to build the regular expression in easy to read and reusable pieces
+
+Define a regular expression for use across your project:
+Houdini.define(:word, /\w+/)
+
+Call hmatch or hscan on a string and build your expression pieces with the r() method by defining the expression inline or using a pre-defined expression.  Then build your match results with the m( ) method.
+
+data = t.hmatch do
+  r("amount", /\d+[,\d]*\.\d+/)
+  r("phone_number", /\(\d{3}\)\s+\d{3}-\d{4}/)
+  r("city", :word)
+  r("state", :word)
+  m("\\$(amount) (phone_number) (city), (state)")
+end
+
+Now you can access the data as methods on the resulting object:
+
+data.amount        => "10.99"
+data.phone_number  => "(555) 444-3322"
+data.city          => "Boston"
+data.state         => "MA"
+
+or access the original MatchData object
+
+data.match =>  #<MatchData "$10.99 (555) 444-3322 Boston, MA" 1:"10.99" 2:"(555) 444-3322" 3:"Boston" 4:"MA">
