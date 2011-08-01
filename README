@@ -1,6 +1,6 @@
 A ruby DSL for building long complex regular expressions used frequently across large data extraction projects.
 
-This is the simplest example possible, but given the following text:
+This is the simplest possible example, but given the following text:
 t = "$10.99 (555) 444-3322 Boston, MA"
 
 Instead of writing a regular expression like the following:
