@@ -1,4 +1,4 @@
-module Houdini
+module Houdinirx
   class RegexHelper
     attr_accessor :expressions, :match_string, :captures, :regexp
   

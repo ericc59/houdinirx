@@ -1,12 +1,12 @@
 $:.unshift(File.dirname(__FILE__)) unless
 $:.include?(File.dirname(__FILE__)) || $:.include?(File.expand_path(File.dirname(__FILE__)))
 
-require "houdini/version"
-require "houdini/string"
-require "houdini/regex_helper"
-require "houdini/match_result"
+require "houdinirx/version"
+require "houdinirx/string"
+require "houdinirx/regex_helper"
+require "houdinirx/match_result"
 
-module Houdini
+module Houdinirx
   
   class << self
     def [](name)

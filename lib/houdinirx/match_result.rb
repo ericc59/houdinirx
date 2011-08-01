@@ -1,4 +1,4 @@
-module Houdini
+module Houdinirx
   class MatchResult
     
     attr_accessor :match, :captures
