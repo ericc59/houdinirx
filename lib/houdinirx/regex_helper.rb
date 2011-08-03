@@ -27,7 +27,6 @@ module Houdini
       @regexp = match_string.gsub(/\s/, "\\s*")
       replace_expressions!(@regexp)
       r = Regexp.new(@regexp, options)
-      puts r.inspect
       Houdini::MatchResult.new(text.match(r), @captures)
     end
     
@@ -46,7 +45,11 @@ module Houdini
         if regex =~ /\(#{name}\)/
           @captures << name
         end
-        r = Houdini[r].source if r.class == Symbol
+        if r.class == Symbol
+          defined_regex = Houdini[r]
+          raise "Regexp :#{r} undefined in Houdinirx.  Have you added it?" if defined_regex.nil?
+          r = defined_regex.source
+        end
         r = r.source if r.class == Regexp
         regex.gsub!(name, r)
       end
