@@ -10,9 +10,9 @@ module Houdini
   
     def r(*args)
       if args.size == 2
-        @expressions << [args[0], args[1]]
+        @expressions << [args[1], args[0]]
       else
-        expression = args.pop
+        expression = args.shift
         args.each do |name|
           @expressions << [name, expression]
         end
@@ -42,6 +42,7 @@ module Houdini
     protected
     def replace_expressions!(regex)
       @expressions.each do |name, r|
+        name = name.to_s
         if regex =~ /\(#{name}\)/
           @captures << name
         end
