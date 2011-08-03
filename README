@@ -20,10 +20,9 @@ Houdini.define(:word, /\w+/)
 Call hmatch or hscan on a string and build your expression pieces with the r() method by defining the expression inline or using a pre-defined expression.  Then build your match results with the m( ) method.
 
 data = t.hmatch do
-  r("amount", /\d+[,\d]*\.\d+/)
-  r("phone_number", /\(\d{3}\)\s+\d{3}-\d{4}/)
-  r("city", :word)
-  r("state", :word)
+  r(/\d+[,\d]*\.\d+/, "amount")
+  r(/\(\d{3}\)\s+\d{3}-\d{4}/, "phone_number")
+  r(:word, "city", "state")
   m("\\$(amount) (phone_number) (city), (state)")
 end
 
